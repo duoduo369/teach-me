@@ -90,9 +90,7 @@
   nav.className = "course-nav";
   nav.setAttribute("aria-label", "课程导航");
 
-  var homepageLink = "";
-  // 如果生成了 homepage.html，取消下面这行的注释
-  // homepageLink = link(homepageHref, "首页", current === "homepage.html") + sep;
+  var homepageLink = link(homepageHref, "首页", current === "homepage.html") + sep;
 
   nav.innerHTML =
     '<div class="course-nav-row">' +
