@@ -35,7 +35,7 @@
 正面标准，按这个写：
 
 - 标题在桌面宽度下一行排得下
-- hero 区干净：eyebrow + h1 + lede。eyebrow 用简短标签。如果有对应的 reference，在 lede 下方加一行速查链接
+- hero 区干净：eyebrow + h1 + lede。eyebrow 用简短标签。如果有对应的 reference，在 lede 下方加一行速查链接。这个规则只用于普通文章页，不用于 `homepage.html`
 - 正文用 `<section>` 分节，每节一个 `<h2>` 起头
 - 代码用 `<pre>` + `<code>`，权威中文条文用 `<pre class="prompt-zh">`
 - 表格用 `<div class="table-wrap">` 包裹 `<table>`

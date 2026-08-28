@@ -10,6 +10,8 @@
 - 课程标题 — 必填，用户输入
 - 一句话简介 — 可选
 - 内容列表 — 从 `course-nav.js` 的 lessons 数据生成，列出每课标题和链接
+- 正文里只放 lesson 列表，不渲染 reference 列表
+- 正文不要出现"内容""速查""参考资料"这类分区标题；速查只通过导航脚本展示
 - 首页出现在导航里，像 PPT 的第一页
 
 ## HTML 模板
@@ -39,8 +41,7 @@ homepage.html 在 `lessons/` 下，CSS/JS 路径与普通文章一致：
           <img src="../assets/cover/xxx.jpg" alt="课程封面">
         </figure>
       </section>
-      <section>
-        <h2>内容</h2>
+      <section class="homepage-lessons" aria-label="课程内容">
         <ul>
           <li><a href="0001-xxx.html">0001 文章标题</a></li>
           <li><a href="0002-yyy.html">0002 文章标题</a></li>
@@ -52,3 +53,4 @@ homepage.html 在 `lessons/` 下，CSS/JS 路径与普通文章一致：
 ```
 
 首页只保留导航、标题、封面图、内容列表。
+不要在页面正文里再写"内容""速查"这类标题，也不要把 `reference/` 里的页面列到正文里。
