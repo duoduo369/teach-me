@@ -1,0 +1,17 @@
+# Obsidian local configuration
+.obsidian/
+.workbuddy/
+
+# Local planning / scratch (not part of the repo)
+.scratch/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editor temp files
+*.swp
+*.swo
+*~
