@@ -9,9 +9,9 @@
 - 封面图 — 用户提供本地路径或 URL，也可让 AI 生成。本地图片复制到该课 `assets/cover/` 下，页面引用 `../assets/cover/xxx.jpg`。URL 直接引用
 - 课程标题 — 必填，用户输入
 - 一句话简介 — 可选
-- 内容列表 — 从 `course-nav.js` 的 lessons 数据生成，列出每课标题和链接
-- 正文里只放 lesson 列表，不渲染 reference 列表
-- 正文不要出现"内容""速查""参考资料"这类分区标题；速查只通过导航脚本展示
+- 首页正文到封面图为止，不在正文里重复 lesson 列表
+- reference 入口也不在正文渲染；lesson / reference 都交给导航脚本展示
+- 正文不要出现"内容""速查""参考资料"这类分区标题
 - 首页出现在导航里，像 PPT 的第一页
 
 ## HTML 模板
@@ -41,16 +41,10 @@ homepage.html 在 `lessons/` 下，CSS/JS 路径与普通文章一致：
           <img src="../assets/cover/xxx.jpg" alt="课程封面">
         </figure>
       </section>
-      <section class="homepage-lessons" aria-label="课程内容">
-        <ul>
-          <li><a href="0001-xxx.html">0001 文章标题</a></li>
-          <li><a href="0002-yyy.html">0002 文章标题</a></li>
-        </ul>
-      </section>
     </main>
   </body>
 </html>
 ```
 
-首页只保留导航、标题、封面图、内容列表。
-不要在页面正文里再写"内容""速查"这类标题，也不要把 `reference/` 里的页面列到正文里。
+首页只保留导航、标题、封面图。
+不要在页面正文里再写 lesson 列表、"内容""速查"这类标题，也不要把 `reference/` 里的页面列到正文里。

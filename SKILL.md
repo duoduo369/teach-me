@@ -82,10 +82,10 @@ argument-hint: "想学什么？"
 ### 可选：生成首页
 
 用户说"生成首页"时，读 [reference/homepage-guide.md](reference/homepage-guide.md)。
+首页正文只保留 hero 和封面图，到 cover 就结束；lesson / reference 入口交给导航，不在正文里重列。
 
 ## 导航
 
 课程只有一篇时：不需要导航。
 
 课程 > 1 篇时，读 [reference/nav-guide.md](reference/nav-guide.md)。
-
