@@ -1,23 +1,32 @@
 ---
 name: teach-me
-description: 用中文生成 HTML 学习资料——读起来像人写的，没有翻译腔和 AI 味。
+display_name: Teach Me
+display_name_en: Teach Me
+description: 学习万物。遇到读不懂的文档、啃不透的代码库、总也学不会的技能，用 teach-me 为你生成一套贴合个人学习需求的本地 HTML 课程。
+description_zh: 学习万物。遇到读不懂的文档、啃不透的代码库、总也学不会的技能，用 teach-me 为你生成一套贴合个人学习需求的本地 HTML 课程。
+description_en: Turn what you want to learn into a course you can keep building on.
+version: 1.1.0
+author: duoduo369
 disable-model-invocation: true
-argument-hint: "想学什么？"
 ---
 
-用户想学一个东西。这是一个跨 session 的请求——他们打算用多个会话持续学下去。
+用户想学一个东西，或继续已经开始的课程。
+
+这个 skill 会围绕主题搭好一个可持续推进的教学工作区，持续产出 lesson HTML、references 速查页和 learning record。文章要自然、耐读，适合一路学下去，而不是一次性拼出来的资料。
 
 ## 教学工作区
 
 当前目录就是教学工作区。学习状态落在这些文件里：
 
-- `MISSION.md` — 为什么学这个。所有教学决策都从这里出发。格式见 [MISSION-FORMAT.md](reference/MISSION-FORMAT.md)。
-- `RESOURCES.md` — 高信任资料清单。课里的判断从这里引，不用参数化知识胡编。格式见 [RESOURCES-FORMAT.md](reference/RESOURCES-FORMAT.md)。
+说明：教学工作区里的速查页统一放在 `./references/`。本 skill 自带的说明文件也位于同名的 `references/` 目录里；在实际使用时，教学工作区和 skill 安装目录不是同一个目录。
+
+- `MISSION.md` — 为什么学这个。所有教学决策都从这里出发。格式见 [MISSION-FORMAT.md](references/MISSION-FORMAT.md)。
+- `RESOURCES.md` — 高信任资料清单。课里的判断从这里引，不用参数化知识胡编。格式见 [RESOURCES-FORMAT.md](references/RESOURCES-FORMAT.md)。
 - `./lessons/*.html` — 学习文章。一篇讲清一件事，是教学工作区的主产物。命名 `0001-<slug>.html`，编号递增。
-- `./reference/*.html` — 速查页。从文章里压出来的精华——术语表、命令速查、流程图。以后回看走这里。
-- `./learning-records/*.md` — 学习记录。类似 ADR，记录非显然的学会的东西，用来算下一篇文章该写什么。命名 `0001-<slug>.md`，编号递增。格式见 [LEARNING-RECORD-FORMAT.md](reference/LEARNING-RECORD-FORMAT.md)。
+- `./references/*.html` — 速查页。从文章里压出来的精华——术语表、命令速查、流程图。以后回看走这里。
+- `./learning-records/*.md` — 学习记录。类似 ADR，记录非显然的学会的东西，用来算下一篇文章该写什么。命名 `0001-<slug>.md`，编号递增。格式见 [LEARNING-RECORD-FORMAT.md](references/LEARNING-RECORD-FORMAT.md)。
 - `./assets/*` — 该课程的可复用组件。导航脚本放这里。
-- `GLOSSARY.md` — 术语表。一旦有术语确认，就创建并保持一致。格式见 [GLOSSARY-FORMAT.md](reference/GLOSSARY-FORMAT.md)。
+- `GLOSSARY.md` — 术语表。一旦有术语确认，就创建并保持一致。格式见 [GLOSSARY-FORMAT.md](references/GLOSSARY-FORMAT.md)。
 - `NOTES.md` — 草稿。记录用户偏好、工作笔记。
 
 ## 工作流
@@ -48,7 +57,7 @@ argument-hint: "想学什么？"
 
 **首次生成时：** 把 `course.css` 和 `open-links-new-tab.js` 拷到该课 `assets/` 里。这两份文件在共享位置（通常在 `课程/assets/`），读出来写入该课 `assets/` 即可。后续文章不用再拷。
 
-**写之前：** 读 [reference/chinese-writing-guide.md](reference/chinese-writing-guide.md)，读 [reference/html-guide.md](reference/html-guide.md)。
+**写之前：** 读 [references/chinese-writing-guide.md](references/chinese-writing-guide.md)，读 [references/html-guide.md](references/html-guide.md)。
 
 **写的时候：**
 
@@ -56,18 +65,18 @@ argument-hint: "想学什么？"
 - 知识点从 RESOURCES.md 里引，每篇至少一个外部引用。
 - 在读者最近发展区——刚好够挑战，但不会卡住。
 
-**写完之后：** 对正文跑一遍[自检清单](reference/chinese-writing-guide.md#自检清单)。代码块、`pre.prompt-zh` 嵌入块、导航列表不动。
+**写完之后：** 对正文跑一遍[自检清单](references/chinese-writing-guide.md#自检清单)。代码块、`pre.prompt-zh` 嵌入块、导航列表不动。
 
 完成标准：文章 HTML 存在，正文通过自检清单。
 
-### 第五步：写 reference 和 learning-record
+### 第五步：写速查页和 learning-record
 
 文章写完后：
 
-- 如果内容值得以后回看，压一个 reference 到 `./reference/`。速查表、术语对照、命令列表——这些是回看的东西。不值得回看的文章不压 reference。
+- 如果内容值得以后回看，压一个速查页到 `./references/`。速查表、术语对照、命令列表——这些是回看的东西。不值得回看的文章不压。
 - 如果用户展示了真正的理解（不是"这节讲过了"，而是能用对），写一条 learning-record。只记录证明学会了的东西。
 
-完成标准：该压的 reference 已压，该记的 learning-record 已记。
+完成标准：该压的速查页已压，该记的 learning-record 已记。
 
 ### 续写
 
@@ -81,11 +90,11 @@ argument-hint: "想学什么？"
 
 ### 可选：生成首页
 
-用户说"生成首页"时，读 [reference/homepage-guide.md](reference/homepage-guide.md)。
-首页正文只保留 hero 和封面图，到 cover 就结束；lesson / reference 入口交给导航，不在正文里重列。
+用户说"生成首页"时，读 [references/homepage-guide.md](references/homepage-guide.md)。
+首页正文只保留 hero 和封面图，到 cover 就结束；lesson / references 入口交给导航，不在正文里重列。
 
 ## 导航
 
 课程只有一篇时：不需要导航。
 
-课程 > 1 篇时，读 [reference/nav-guide.md](reference/nav-guide.md)。
+课程 > 1 篇时，读 [references/nav-guide.md](references/nav-guide.md)。

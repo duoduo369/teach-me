@@ -39,11 +39,11 @@
   refs.forEach(function (item) { refFiles[item.file] = true; });
 
   const inLessons = /\/lessons\//i.test(path) || !!lessonFiles[current];
-  const inReference = /\/reference\//i.test(path) || !!refFiles[current];
+  const inReferences = /\/references\//i.test(path) || !!refFiles[current];
 
   const rootPrefix = "..";
   const lessonPrefix = inLessons ? "." : "../lessons";
-  const refPrefix = inReference ? "." : "../reference";
+  const refPrefix = inReferences ? "." : "../references";
   const homepageHref = (inLessons ? "." : "../lessons") + "/homepage.html";
   const sep = '<span class="course-nav-sep" aria-hidden="true">·</span>';
 

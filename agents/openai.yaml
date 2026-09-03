@@ -1,5 +1,0 @@
-interface:
-  display_name: "Teach Me"
-  short_description: "用中文生成 HTML 学习资料"
-policy:
-  allow_implicit_invocation: false
